@@ -1,0 +1,48 @@
+# version: "3.3"
+# services:
+#   mysql:
+#     image: mysql:8.0
+#     container_name: mysql_db
+#     restart: always
+#     environment:
+#       MYSQL_USER: "root"
+#       MYSQL_PASSWORD: "root"
+#       MYSQL_ROOT_PASSWORD: "password"
+#       MYSQL_DATABASE: "todolist_db"
+#     ports:
+#       - "3306:3306"
+#     # expose:
+#     #   - "3306"
+#     # volumes:
+#     #   - /home/xii34/mysql-docker/mysql:/var/lib/mysql
+#     networks:
+#       - todolist
+
+# # Networks to be created to facilitate communication between containers
+# networks:
+#   todolist:
+
+version: '3'
+
+volumes:
+  mysql_volume:
+
+networks:
+  go_network:
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    restart : always
+    networks:
+      - go_network
+    ports:
+      - 3306:3306
+    volumes:
+    - mysql_volume:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_DATABASE=devcode
