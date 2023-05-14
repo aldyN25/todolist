@@ -106,7 +106,7 @@ func UpdateTodos(c *fiber.Ctx) error {
 
 	todosRepository.UpdateTodos(id, &todos, todosRequest)
 
-	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status":  constants.STATUS_SUCCESS,
 		"message": "success",
 		"data":    todos.ToTodosRes(),
