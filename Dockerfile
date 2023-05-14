@@ -38,7 +38,7 @@ COPY --from=builder /app/main .
 COPY --from=builder /app/.env .
 
 # Expose port 3030 to the outside world
-EXPOSE 3030
+# EXPOSE 3030
 
 #Command to run the executable
 CMD ["./main"]
