@@ -32,11 +32,10 @@ func GetInstance() (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	if configs.Dbconfig.DbIsMigrate {
-		// Migrate Here
-		db.AutoMigrate(&models.Activities{})
-		db.AutoMigrate(&models.Todos{})
-	}
+	// Migrate Here
+	db.AutoMigrate(&models.Activities{})
+	db.AutoMigrate(&models.Todos{})
+
 	// fmt.Println("[DATABASE] : ", db)
 	return db, nil
 }
