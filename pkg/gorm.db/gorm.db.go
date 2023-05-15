@@ -33,9 +33,14 @@ func GetInstance() (*gorm.DB, error) {
 		return nil, err
 	}
 	// Migrate Here
-	db.AutoMigrate(&models.Activities{})
-	db.AutoMigrate(&models.Todos{})
-
+	errors := db.AutoMigrate(&models.Activities{})
+	if errors != nil {
+		return nil, errors
+	}
+	errors = db.AutoMigrate(&models.Todos{})
+	if errors != nil {
+		return nil, errors
+	}
 	// fmt.Println("[DATABASE] : ", db)
 	return db, nil
 }
