@@ -11,8 +11,8 @@ type (
 		ActivityId uint `gorm:"column:activity_id;primary_key;auto_increment"`
 		Email      string
 		Title      string
-		CreatedAt  time.Time  `gorm:"default:CURRENT_TIMESTAMP"`
-		UpdatedAt  *time.Time `gorm:"column:update_at"`
+		CreatedAt  time.Time  `gorm:"column:created_at"`
+		UpdatedAt  *time.Time `gorm:"column:updated_at"`
 	}
 
 	ActivitiesRes struct {

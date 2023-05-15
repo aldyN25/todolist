@@ -13,8 +13,9 @@ type (
 		Title           string
 		Priority        string
 		IsActive        bool       `gorm:"column:is_active"`
-		CreatedAt       time.Time  `gorm:"default:CURRENT_TIMESTAMP"`
+		CreatedAt       time.Time  `gorm:"column:created_at"`
 		UpdatedAt       *time.Time `gorm:"column:updated_at"`
+		Activities      Activities `gorm:"foreignKey:ActivityGroupId;references:ActivityId"`
 	}
 
 	TodosRes struct {
