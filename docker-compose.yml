@@ -6,6 +6,7 @@ volumes:
 
 networks:
   go_network:
+    driver: bridge
 
 services:
   app:
@@ -17,11 +18,11 @@ services:
     volumes:
       - api:/usr/src/app/
     depends_on:
-      - mysql          
+      - devcode-mysql
     networks:
       - go_network
-  mysql:
-    container_name: mysql
+  devcode-mysql:
+    container_name: devcode_db_mysql
     image: mysql:8.0
     restart : always
     networks:
@@ -35,4 +36,3 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DBNAME}
-      - MYSQL_PORT=${MYSQL_PORT}

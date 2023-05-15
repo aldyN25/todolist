@@ -8,11 +8,11 @@ import (
 
 type (
 	Activities struct {
-		ActivitiesId uint `gorm:"column:activities_id;primary_key;auto_increment"`
-		Email        string
-		Title        string
-		CreatedAt    time.Time  `gorm:"default:CURRENT_TIMESTAMP"`
-		UpdatedAt    *time.Time `gorm:"column:update_at"`
+		ActivityId uint `gorm:"column:activity_id;primary_key;auto_increment"`
+		Email      string
+		Title      string
+		CreatedAt  time.Time  `gorm:"default:CURRENT_TIMESTAMP"`
+		UpdatedAt  *time.Time `gorm:"column:update_at"`
 	}
 
 	ActivitiesRes struct {
@@ -31,7 +31,7 @@ type (
 
 func (activities Activities) ToActivitiesRes() *ActivitiesRes {
 	result := &ActivitiesRes{
-		ID:        activities.ActivitiesId,
+		ID:        activities.ActivityId,
 		Email:     activities.Email,
 		Title:     activities.Title,
 		CreatedAt: activities.CreatedAt.Format(constants.LayoutYMD),

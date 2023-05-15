@@ -42,11 +42,11 @@ func CreateTodos(c *fiber.Ctx, todosRequest *models.TodosReq) (*models.Todos, er
 	}
 	now := time.Now()
 	todos := &models.Todos{
-		ActivitiesId: todosRequest.ActivitiesId,
-		Title:        todosRequest.Title,
-		Priority:     todosRequest.Priority,
-		IsActive:     todosRequest.IsActive,
-		CreatedAt:    now,
+		ActivityGroupId: todosRequest.ActivityGroupId,
+		Title:           todosRequest.Title,
+		Priority:        todosRequest.Priority,
+		IsActive:        todosRequest.IsActive,
+		CreatedAt:       now,
 	}
 
 	err = db.Debug().Table("todos").Create(&todos).Error
