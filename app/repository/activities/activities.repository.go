@@ -68,12 +68,12 @@ func UpdateActivity(id string, activities *models.Activities, activitiesRequest 
 		Title:     activitiesRequest.Title,
 		UpdatedAt: &now,
 	}
-	err = db.Debug().Table("activities").Where("activities_id = ?", id).Updates(&dataUpdates).Error
+	err = db.Debug().Table("activities").Where("activity_id = ?", id).Updates(&dataUpdates).Error
 	if err != nil {
 		return nil, err
 	}
 
-	err = db.Debug().Table("activities").Where("activities_id = ? ", id).First(&activities).Error
+	err = db.Debug().Table("activities").Where("activity_id = ? ", id).First(&activities).Error
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +86,7 @@ func DeleteActivity(id string, activities *models.Activities) error {
 		return err
 	}
 
-	err = db.Debug().Table("activities").Where("activities_id = ?", id).Delete(&activities).Error
+	err = db.Debug().Table("activities").Delete(&activities).Error
 	if err != nil {
 		return err
 	}

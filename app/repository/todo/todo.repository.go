@@ -26,7 +26,7 @@ func GetTodosById(id string, todos *models.Todos) error {
 		return err
 	}
 
-	err = db.Debug().Table("todos").Where("todos_id = ?", id).First(&todos).Error
+	err = db.Debug().Table("todos").First(&todos, id).Error
 
 	if err != nil {
 		return err
@@ -69,7 +69,7 @@ func UpdateTodos(id string, todos *models.Todos, todosRequest *models.TodosReq) 
 		IsActive:  todosRequest.IsActive,
 		UpdatedAt: &now,
 	}
-	err = db.Debug().Table("todos").Where("todos_id = ?", id).Updates(&dataUpdates).Error
+	err = db.Debug().Table("todos").Where("todo_id = ?", id).Updates(&dataUpdates).Error
 	if err != nil {
 		return nil, err
 	}
