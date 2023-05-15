@@ -36,6 +36,10 @@ type (
 	}
 )
 
+func (Todos) TableName() string {
+	return "todos"
+}
+
 func (n Todos) ToTodosRes() *TodosRes {
 	result := &TodosRes{
 		TodoId:          n.TodoId,

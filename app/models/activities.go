@@ -29,6 +29,10 @@ type (
 	}
 )
 
+func (Activities) TableName() string {
+	return "activities"
+}
+
 func (activities Activities) ToActivitiesRes() *ActivitiesRes {
 	result := &ActivitiesRes{
 		ActivityId: activities.ActivityId,
