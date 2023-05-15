@@ -22,6 +22,9 @@ RUN go mod download
 # Copy the source from the current directory to the working Directory inside the container 
 COPY . .
 
+# Install the MySQL driver
+RUN go get github.com/go-sql-driver/mysql
+
 # Build the Go app
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
