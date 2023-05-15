@@ -16,11 +16,11 @@ type (
 	}
 
 	ActivitiesRes struct {
-		ID        uint
-		Email     string `json:"email"`
-		Title     string `json:"title"`
-		CreatedAt string `json:"created_at"`
-		UpdatedAt string `json:"update_at"`
+		ActivityId uint   `json:"activity_id"`
+		Email      string `json:"email"`
+		Title      string `json:"title"`
+		CreatedAt  string `json:"created_at"`
+		UpdatedAt  string `json:"update_at"`
 	}
 
 	ActivitiesReq struct {
@@ -31,10 +31,10 @@ type (
 
 func (activities Activities) ToActivitiesRes() *ActivitiesRes {
 	result := &ActivitiesRes{
-		ID:        activities.ActivityId,
-		Email:     activities.Email,
-		Title:     activities.Title,
-		CreatedAt: activities.CreatedAt.Format(constants.LayoutYMD),
+		ActivityId: activities.ActivityId,
+		Email:      activities.Email,
+		Title:      activities.Title,
+		CreatedAt:  activities.CreatedAt.Format(constants.LayoutYMD),
 	}
 
 	if activities.UpdatedAt != nil {
