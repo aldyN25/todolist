@@ -5,10 +5,9 @@ import (
 	"sync"
 
 	"github.com/aldyN25/todolist/app/configs"
-	// "github.com/jinzhu/gorm"
-	"gorm.io/driver/mysql"
-
+	"github.com/aldyN25/todolist/app/models"
 	_ "github.com/jinzhu/gorm/dialects/mysql" //mysql database driver
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -33,39 +32,11 @@ func GetInstance() (*gorm.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	// return db, nil
-	// }
+	if configs.Dbconfig.DbIsMigrate {
+		// Migrate Here
+		db.AutoMigrate(&models.Activities{})
+		db.AutoMigrate(&models.Todos{})
+	}
 	// fmt.Println("[DATABASE] : ", db)
 	return db, nil
 }
-
-// type Server struct {
-// 	DB     *gorm.DB
-// 	Router *mux.Router
-// }
-
-// func Initialize(Dbdriver string) (*gorm.DB, error) {
-// 	var server Server
-// 	configs := configs.GetInstance()
-
-// 	var err error
-
-// 	if Dbdriver == "mysql" {
-// 		DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local",
-// 			configs.Dbconfig.Username,
-// 			configs.Dbconfig.Password,
-// 			configs.Dbconfig.Host,
-// 			configs.Dbconfig.Port,
-// 			configs.Dbconfig.Dbname,
-// 		)
-// 		server.DB, err = gorm.Open(Dbdriver, DBURL)
-// 		if err != nil {
-// 			fmt.Printf("Cannot connect to %s database", Dbdriver)
-// 			log.Fatal("This is the error:", err)
-// 		} else {
-// 			fmt.Printf("We are connected to the %s database", Dbdriver)
-// 		}
-// 	}
-
-// 	return server.DB, nil
-// }
