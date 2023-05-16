@@ -22,12 +22,15 @@ services:
     depends_on:
       - devcode-mysql
     links:
-      - mysql-container
+      - devcode-mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+      - MODE=DEV
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
       - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DBNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
     networks:
       - go_network
   devcode-mysql:
